@@ -1,0 +1,23 @@
+.root {
+    width: 90%;
+    padding: 50px;
+    border: 1px solid #dedede;
+    margin: 110px auto;
+}
+
+.userMenu {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    align-items: center;
+    width: 100%;
+}
+
+.userMenu a {
+    width: 50%;
+}
+
+.userMenu a button{
+    justify-content: center;
+    align-items: center;
+}
