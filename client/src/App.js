@@ -1,15 +1,22 @@
-import React from "react";
-import { Route, Routes, createBrowserRouter } from "react-router-dom";
-import { HomePage } from "./pages/HomePage";
+import React from "react"
+import { Route, Routes } from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux"
 
-import { Header } from './components/Header';
-import { Login } from './pages/Login';
-import { Register } from './pages/Register';
-import { CreateUser } from './pages/CreateUser';
-
-//const router = createBrowserRouter([{path: `/`, element: <HomePage />}])
+import { HomePage } from "./pages/HomePage"
+import { Header } from './components/Header'
+import { Login } from './pages/Login'
+import { Register } from './pages/Register'
+import { CreateUser } from './pages/CreateUser'
+import { fetchAuthMount, isAuth } from "./redux/slices/auth"
 
 function App () {
+    const dispatch = useDispatch();
+    const isAuthSelector = useSelector(isAuth);
+
+    React.useEffect(() => {
+        dispatch(fetchAuthMount());
+    }, [])
+
     return (     
         <>
             <Header />
@@ -23,32 +30,4 @@ function App () {
     ) 
 }
 
-export default App;
-
-// fetching data from backend 
-
-// class App extends React.Component {
-//     constructor(props){
-//         super(props);
-//         this.state = {apiResponse: ""};
-//     }
-
-//     callAPI() {
-//         fetch("http://localhost:3000/test")
-//         .then(res => res.text())
-//         .then(res => this.setState({apiResponse: res}));
-//     }
-
-//     componentWillMount() {
-//         this.callAPI();
-//     }
-    
-//     render() {  
-//         return (
-//             <div>
-//                 <Hero /> 
-//                 <p>{this.state.apiResponse}</p>
-//             </div>
-//         );
-//     }   
-// }
+export default App
